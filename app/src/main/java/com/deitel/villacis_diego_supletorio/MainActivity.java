@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText correo,contraseña;
-    String textCorreo,textContrasenia;
+    String textCedula,textContrasenia;
     Button aceptar;
 
     @Override
@@ -29,16 +29,16 @@ public class MainActivity extends AppCompatActivity {
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textCorreo = correo.getText().toString();
+                textCedula = correo.getText().toString();
                 textContrasenia = contraseña.getText().toString();
-                if(!Patterns.EMAIL_ADDRESS.matcher(textCorreo).matches()){
+                if(!Patterns.EMAIL_ADDRESS.matcher(textCedula).matches()){
                     correo.setError("Verfifica que el correo esté bien escrito");
                     correo.requestFocus();
                 }else if (textContrasenia.isEmpty()){
                     contraseña.setError("Intente ingresar su contraseña");
                     contraseña.requestFocus();
                 }else{
-                    IngresarFirebase(textCorreo,textContrasenia);
+                    ingresarPrincipal(textCedula,textContrasenia);
                 }
             }
 
@@ -46,26 +46,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void IngresarFirebase(String correob,String contraseñab) {
-        Toast.makeText(MainActivity.this, textCorreo+textContrasenia,
+    private void ingresarPrincipal(String correob,String contraseñab) {
+        Toast.makeText(MainActivity.this, textCedula+textContrasenia,
                 Toast.LENGTH_SHORT).show();
 
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-
-                            Toast.makeText(MainActivity.this, "Authentication susces.",
-                                    Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                    
 
     }
 
