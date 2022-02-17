@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     String textCedula,textContrasenia;
     Button aceptar;
 
+    //DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         correo = findViewById(R.id.editText_correo);
         contraseña = findViewById(R.id.editText_contrasenia);
         aceptar = findViewById(R.id.button_iniciar_sesion);
+
+        //db=new DatabaseHelper(this);
 
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, textCedula+textContrasenia,
                 Toast.LENGTH_SHORT).show();
 
-                    
+
 
     }
 
